@@ -1,0 +1,28 @@
+.signin{
+    height: 90vh;
+    width: 100vw;
+}
+
+.signin .rap{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.signin .rap form{
+    display: flex;
+    flex-direction: column;
+}
+
+.signin .rap form input{
+    height: 40px;
+    width: 250px;
+    outline: none;
+    border: none;
+    border-radius: 8px;
+    padding-left: 10px;
+    margin-bottom: 10px;
+}

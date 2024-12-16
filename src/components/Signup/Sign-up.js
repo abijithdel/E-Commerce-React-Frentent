@@ -51,11 +51,12 @@ function Signup() {
 
     return (
         <div className="signup">
+            <title>Sign up</title>
             <div className="rap">
                 <h2 className="title-font">Sign up</h2>
                 {errormsg ?  <Alert variant="warning">{errormsg}</Alert>: ''}
                 {successmsg ?  <Alert variant="success">{successmsg}</Alert>: ''}
-                <form action="" method="post">
+                <form method="post">
                     <input
                         type="email"
                         placeholder="Email"
