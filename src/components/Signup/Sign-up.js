@@ -1,6 +1,7 @@
 import { Button } from 'react-bootstrap';
 import './Sign-up.css'
 import { useState } from 'react';
+// import Axios from '../../config/axios'
 
 function Signup() {
     const [email, setEmail] = useState()
@@ -19,8 +20,8 @@ function Signup() {
         setCpassword(e.target.value)
     }
 
-    function signupAPI(){
-        console.log(email, password, cpassword)
+    async function signupAPI(){
+       
     }
 
     return (
