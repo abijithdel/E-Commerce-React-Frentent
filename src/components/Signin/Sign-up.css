@@ -1,0 +1,18 @@
+.signup {
+    height: 90vh;
+    width: 100vw;
+}
+
+.signup .rap{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.signup .rap form{
+    display: flex;
+    flex-direction: column;
+}

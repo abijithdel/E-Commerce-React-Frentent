@@ -13,8 +13,8 @@ function Header() {
                     <Navbar.Toggle className='text-white bg-white' aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="ms-auto">
-                            <Nav.Link className="text-white icons" href="#home">Home</Nav.Link>
-                            <Nav.Link className="text-white icons" href="#link">Link</Nav.Link>
+                            <Nav.Link className="text-white icons" href="#home">Sign in</Nav.Link>
+                            <Nav.Link className="text-white icons" href="#link">Sign up</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
