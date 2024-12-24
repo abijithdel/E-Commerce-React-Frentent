@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useNavigate } from "react-router-dom";
 import { Alert, Button } from 'react-bootstrap'
 import Axios from '../../config/axios'
+import { isLogin } from '../../AppContext'
 import './Signin.css'
 
 function Signin() {
@@ -10,6 +11,8 @@ function Signin() {
     const [password,setPassword] = useState()
     const [errormsg,setErrormsg] = useState(null)
     const [successmsg,setSuccessmsg] = useState(null)
+
+    const authStatus = useContext(isLogin)
 
     function onEmail(e){
         setEmail(e.target.value)
@@ -30,6 +33,8 @@ function Signin() {
                 if(res.data.status){
                     setErrormsg(null)
                     setSuccessmsg(res.data.message)
+                    localStorage.setItem('user',res.data.user)
+                    authStatus.setLogin(true)
                     setTimeout(() => {
                         navigate('/')
                     }, 2000);
@@ -37,7 +42,7 @@ function Signin() {
                     setErrormsg(res.data.message)
                 }
             })
-            .catch(err => console.log(err))
+            .catch(err => setErrormsg('Server Error'))
         }else{
             setErrormsg('Enter All Fields')
         }

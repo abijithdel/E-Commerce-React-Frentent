@@ -1,11 +1,13 @@
-import React from 'react'
+// import React, { useEffect } from 'react'
 import './Home.css'
 
 function Home() {
+ 
   return (
-    <div>
+    <>
+      <title>Home</title>
       Home
-    </div>
+    </>
   )
 }
 

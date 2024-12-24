@@ -1,9 +1,9 @@
 import { Button, Alert } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import "./Sign-up.css";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Axios from "../../config/axios";
-
+import { isLogin } from '../../AppContext'
+import "./Sign-up.css";
 function Signup() {
     const navigate = useNavigate()
     const [email, setEmail] = useState();
@@ -11,6 +11,7 @@ function Signup() {
     const [cpassword, setCpassword] = useState();
     const [errormsg,setErrormsg] = useState(null)
     const [successmsg,setSuccessmsg] = useState(null)
+    const authStatus = useContext(isLogin)
 
     function onEmail(e) {
         setEmail(e.target.value);
@@ -35,7 +36,8 @@ function Signup() {
                     if(res.data.status){
                         setErrormsg('')
                         setSuccessmsg(res.data.message)
-                        // Save Section
+                        localStorage.setItem('user',res.data.NewUser)
+                        authStatus.setLogin(true)
                         setTimeout(()=>{
                             navigate('/')
                         },2000)
