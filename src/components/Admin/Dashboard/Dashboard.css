@@ -1,0 +1,27 @@
+.Dashboard{
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+
+.Dashboard .rap{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.Dashboard .rap .btns{
+    height: 110px;
+    width: 250px;
+    background-color: rgb(22, 23, 27);
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+.Dashboard .rap .btns a{
+    text-decoration: none;
+}

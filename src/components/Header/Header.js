@@ -1,52 +1,79 @@
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import 'bootstrap/dist/css/bootstrap.min.css'
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import "bootstrap/dist/css/bootstrap.min.css";
 import { Outlet, Link, useNavigate } from "react-router-dom";
-import { useEffect, useContext } from 'react';
-import { isLogin } from '../../AppContext'
-import './Header.css'
+import { useEffect, useContext, useState } from "react";
+import { isLogin } from "../../AppContext";
+import "./Header.css";
 
 function Header() {
-    const navigate = useNavigate()
+    const [admin,setAdmin] = useState(false)
+    const navigate = useNavigate();
 
-    const authStatus = useContext(isLogin)
+    const authStatus = useContext(isLogin);
     useEffect(() => {
-        if (localStorage.getItem('user')) {
-            authStatus.setLogin(true)
+        if (localStorage.getItem("user")) {
+            const userSri = localStorage.getItem("user")
+            const User = JSON.parse(userSri)
+            setAdmin(User.admin)
+            authStatus.setLogin(true);
         }
-    }, [authStatus])
+    }, [authStatus]);
 
-    function logout(){
-        localStorage.removeItem('user')
-        authStatus.setLogin(false)
-        navigate('/')
+    function logout() {
+        localStorage.removeItem("user");
+        authStatus.setLogin(false);
+        navigate("/");
     }
     return (
-        <div className='header'>
+        <div className="header">
             <Navbar expand="lg" className="text-white">
                 <Container>
-                    <Navbar.Brand href="#home" className="text-white title">E-Cart</Navbar.Brand>
-                    <Navbar.Toggle className='text-white bg-white' aria-controls="basic-navbar-nav" />
+                    <Navbar.Brand href="#home" className="text-white title">
+                        E-Cart
+                    </Navbar.Brand>
+                    <Navbar.Toggle
+                        className="text-white bg-white"
+                        aria-controls="basic-navbar-nav"
+                    />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="ms-auto">
-                            {authStatus.islogin ?
-                                <Nav.Link className="text-white icons">
-                                    <Link onClick={logout} className='text-danger' >Logout</Link>
-                                </Nav.Link> 
-                                :
-                                (<>
+                            <Nav.Link className="text-white icons">
+                                <Link to="/">
+                                    Home
+                                </Link>
+                            </Nav.Link>
+                            {authStatus.islogin ? (
+                                (
+                                    <>
+                                        {admin ?
+                                        <Nav.Link className="text-white icons">
+                                            <Link to='/admin'>
+                                                Admin Panel
+                                            </Link>
+                                        </Nav.Link>
+                                        : '' 
+                                        }
+                                        <Nav.Link className="text-white icons">
+                                            <Link onClick={logout} className="text-danger">
+                                                Logout
+                                            </Link>
+                                        </Nav.Link>
+                                          
+                                    </>
+                                )
+                            ) : (
+                                <>
                                     <Nav.Link className="text-white icons">
-                                        <Link to='signin'>Sign in</Link>
+                                        <Link to="signin">Sign in</Link>
                                     </Nav.Link>
 
                                     <Nav.Link className="text-white icons">
-                                        <Link to='signup'>Sign up</Link>
+                                        <Link to="signup">Sign up</Link>
                                     </Nav.Link>
-                                </>)
-                            }
-
-
+                                </>
+                            )}
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
@@ -57,13 +84,3 @@ function Header() {
 }
 
 export default Header;
-
-// (<>
-//     <Nav.Link className="text-white icons">
-//         <Link to='signin'>Sign in</Link>
-//     </Nav.Link>
-
-//     <Nav.Link className="text-white icons">
-//         <Link to='signup'>Sign up</Link>
-//     </Nav.Link>
-// </>)

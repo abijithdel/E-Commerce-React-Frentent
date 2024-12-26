@@ -1,14 +1,16 @@
-// import React, { useEffect } from 'react'
-import './Home.css'
+import React, { useEffect } from "react";
+import "./Home.css";
 
 function Home() {
- 
+  useEffect(() => {
+    
+  }, []);
   return (
     <>
       <title>Home</title>
       Home
     </>
-  )
+  );
 }
 
-export default Home
+export default Home;

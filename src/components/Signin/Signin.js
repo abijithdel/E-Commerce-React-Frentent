@@ -33,7 +33,8 @@ function Signin() {
                 if(res.data.status){
                     setErrormsg(null)
                     setSuccessmsg(res.data.message)
-                    localStorage.setItem('user',res.data.user)
+                    const user = JSON.stringify(res.data.user)
+                    localStorage.setItem('user',user)
                     authStatus.setLogin(true)
                     setTimeout(() => {
                         navigate('/')

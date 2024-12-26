@@ -36,7 +36,8 @@ function Signup() {
                     if(res.data.status){
                         setErrormsg('')
                         setSuccessmsg(res.data.message)
-                        localStorage.setItem('user',res.data.NewUser)
+                        const user = JSON.stringify(res.data.NewUser)
+                        localStorage.setItem('user',user)
                         authStatus.setLogin(true)
                         setTimeout(()=>{
                             navigate('/')
