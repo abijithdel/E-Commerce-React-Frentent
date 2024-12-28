@@ -7,6 +7,7 @@ import Home from "./components/Home/Home";
 import Error from "./components/Error/Error";
 import AddProduct from "./components/Admin/AddProduct/AddProduct";
 import Dashboard from "./components/Admin/Dashboard/Dashboard";
+import CreatePoster from "./components/Admin/CreatePoster/CreatePoster";
 import { isLogin } from "./AppContext";
 import "./App.css";
 
@@ -22,6 +23,7 @@ function App() {
           <Route path="/signin" element={<Signin />} />
           <Route path="/admin" element={<Dashboard />} />
           <Route path="/addproduct" element={<AddProduct />} />
+          <Route path="/createposter" element={<CreatePoster />} />
           <Route path="*" element={<Error data={{error:404,message:'Page Not Found'}} />} />
         </Routes>
       </isLogin.Provider>

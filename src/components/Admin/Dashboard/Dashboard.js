@@ -28,6 +28,9 @@ function Dashboard() {
       navigate("/");
     }
   }, [navigate]);
+  const margin = {
+    marginRight: '10px'
+  }
   return (
     <Container>
       <title>Admin Panel</title>
@@ -39,7 +42,8 @@ function Dashboard() {
             <h4>All Product's</h4>
             <span>20</span>
             <div>
-              <Link to="/addproduct">Add New</Link>
+              <Link style={margin} to="/addproduct">Add New</Link>
+              <Link>View</Link>
             </div>
           </div>
 
@@ -55,7 +59,17 @@ function Dashboard() {
             <h4>All Order's</h4>
             <span>20</span>
             <div>
-              <Link>Ship</Link>
+              <Link style={margin}>Ship</Link>
+              <Link>View</Link>
+            </div>
+          </div>
+
+          <div className="btns">
+            <h4>All Poster's</h4>
+            <span>20</span>
+            <div>
+              <Link style={margin} to="/createposter">Create</Link>
+              <Link>View</Link>
             </div>
           </div>
 

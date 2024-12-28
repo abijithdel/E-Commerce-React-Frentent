@@ -1,0 +1,23 @@
+.createposter{
+    height: 90vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.createposter form{
+    display: flex;
+    flex-direction: column;
+}
+
+.createposter form input[type='text']{
+    margin-top: 10px;
+    height: 38px;
+    width: 300px;
+    padding-left: 10px;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+}
