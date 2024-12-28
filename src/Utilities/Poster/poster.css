@@ -1,0 +1,36 @@
+.poster{
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+.poster .imgs {
+    height: 100%;
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px;
+    
+}
+
+.poster .imgs .title{
+    position: absolute;
+    bottom: 60px;
+    left: 20px;
+    font-family: Bebas Neue;
+}
+
+.poster .imgs .dot-container{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+
+}
+
+.poster .imgs .dot-container .posterdonts{
+    margin: 0 3px;
+    cursor: pointer;
+    font-size: 40px;
+}
