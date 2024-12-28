@@ -2,14 +2,18 @@ import React, { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import Poster from '../../Utilities/Poster/Poster'
 import Axios from '../../config/axios'
-import "./Home.css";
 import { Link } from "react-router-dom";
+import { DOMAIN } from '../../config/domain'
+import "./Home.css";
 
 function Home() {
   const [slides, setSlider] = useState()
   const [sliderTrue, setSliderTrue] = useState()
+  const [special, setSpecial] = useState([])
+  const [products, setProducts] = useState([])
 
   useEffect(() => {
+    // POSTER API
     Axios({
       url: 'admin/allposters',
       method: 'GET'
@@ -22,6 +26,28 @@ function Home() {
           } else {
             setSliderTrue(true)
           }
+        }
+      })
+      .catch(err => console.log(err));
+    // ProDuct API
+    Axios({
+      url: 'admin/get-all-products',
+      method: "GET"
+    })
+      .then(res => {
+        if (res.data.status) {
+          setProducts(res.data.Products)
+        }
+      })
+      .catch(err => console.log(err));
+    // Special API
+    Axios({
+      url: 'admin/special',
+      method: 'GET'
+    })
+      .then(res => {
+        if (res.data.status) {
+          setSpecial(res.data.special)
         }
       })
       .catch(err => console.log(err))
@@ -37,19 +63,18 @@ function Home() {
               <Poster slides={slides} />
             </div>
             <div className="one-pro">
-              <Link>
-                <img src="http://localhost:3001/pro-imgs/img-1735413385682-724367066.jpg" alt="img" />
-                <h2>I Phone</h2>
-                <h3>₹2080</h3>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
-              </Link>
+              {special.map((item, key) => {
+                return (
 
-              <Link>
-                <img src="http://localhost:3001/pro-imgs/img-1735413385682-724367066.jpg" alt="img" />
-                <h2>I Phone</h2>
-                <h3>₹2080</h3>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
-              </Link>
+                  <Link key={key}>
+                    <img src={`http://${DOMAIN}/pro-imgs/${item.filename}`} alt={item.name} />
+                    <h2>{item.name}</h2>
+                    <h3>₹{item.price}</h3>
+                    <p>{item.description}</p>
+                  </Link>
+
+                )
+              })}
             </div>
           </div>
           : ''}
