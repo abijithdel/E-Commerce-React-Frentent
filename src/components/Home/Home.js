@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Container } from "react-bootstrap";
+import { Button, Container } from "react-bootstrap";
 import Poster from '../../Utilities/Poster/Poster'
 import Axios from '../../config/axios'
 import { Link } from "react-router-dom";
@@ -52,6 +52,7 @@ function Home() {
       })
       .catch(err => console.log(err))
   }, [])
+
   return (
 
     <div className="home-page">
@@ -78,7 +79,22 @@ function Home() {
             </div>
           </div>
           : ''}
-
+        <div className="products mt-5">
+          {products.map((item, key) => (
+            <Link key={key}>
+              <div className="Product">
+                <img src={`http://${DOMAIN}/pro-imgs/${item.filename}`} alt={item.name} />
+                <h3 className="text-center">{item.name}</h3>
+                <p>{item.description}</p>
+                <h4>₹{item.price}</h4>
+                <div>
+                  <Button>Add To Cart</Button>
+                  <Button variant="success" className="m-2">Buy Now</Button>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
       </Container>
     </div>
 
