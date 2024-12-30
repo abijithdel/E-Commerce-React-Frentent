@@ -4,9 +4,11 @@ import Poster from '../../Utilities/Poster/Poster'
 import Axios from '../../config/axios'
 import { Link } from "react-router-dom";
 import { DOMAIN } from '../../config/domain'
+import {  toast } from 'react-toastify';
 import "./Home.css";
 
 function Home() {
+
   const [slides, setSlider] = useState()
   const [sliderTrue, setSliderTrue] = useState()
   const [special, setSpecial] = useState([])
@@ -53,10 +55,38 @@ function Home() {
       .catch(err => console.log(err))
   }, [])
 
+  function AddtoCart(id){
+    if(localStorage.getItem("user")){
+      const user = localStorage.getItem("user")
+      const obj = JSON.parse(user)
+      Axios({
+        url:'add-to-cart',
+        method:'POST',
+        data: { user_id:obj._id, products_id:id }
+      })
+      .then((response => {
+        if(response.data.status){
+          toast.success(response.data.message)
+        }else{
+          toast.error(response.data.message)
+        }
+      }))
+      .catch(err => console.log(err))
+    }else{
+      toast.error('Sign in Now')
+    }
+  }
+
+
+
   return (
 
     <div className="home-page">
       <title>Home</title>
+      <div className="search-container">
+        <input type="search" placeholder="Search..!" />
+        <Button className="btn" variant="outline-light">Search</Button>
+      </div>
       <Container className="home mt-2">
         {sliderTrue ?
           <div className="main">
@@ -81,18 +111,20 @@ function Home() {
           : ''}
         <div className="products mt-5">
           {products.map((item, key) => (
-            <Link key={key}>
+            
               <div className="Product">
+                <Link key={key} to={`/product/${item._id}`}>
                 <img src={`http://${DOMAIN}/pro-imgs/${item.filename}`} alt={item.name} />
-                <h3 className="text-center">{item.name}</h3>
-                <p>{item.description}</p>
+                <h3 className="text-center">{item.name}.</h3>
+                <p>{item.description}..</p>
                 <h4>₹{item.price}</h4>
+                </Link>
                 <div>
-                  <Button>Add To Cart</Button>
+                  <Button onClick={() => AddtoCart(item._id)}>Add To Cart</Button>
                   <Button variant="success" className="m-2">Buy Now</Button>
                 </div>
               </div>
-            </Link>
+            
           ))}
         </div>
       </Container>

@@ -8,7 +8,9 @@ import Error from "./components/Error/Error";
 import AddProduct from "./components/Admin/AddProduct/AddProduct";
 import Dashboard from "./components/Admin/Dashboard/Dashboard";
 import CreatePoster from "./components/Admin/CreatePoster/CreatePoster";
+import OneProduct from "./components/OneProduct/OneProduct";
 import { isLogin } from "./AppContext";
+import { ToastContainer } from 'react-toastify';
 import "./App.css";
 
 function App() {
@@ -24,9 +26,11 @@ function App() {
           <Route path="/admin" element={<Dashboard />} />
           <Route path="/addproduct" element={<AddProduct />} />
           <Route path="/createposter" element={<CreatePoster />} />
+          <Route path="/product/:id" element={<OneProduct />} />
           <Route path="*" element={<Error data={{error:404,message:'Page Not Found'}} />} />
         </Routes>
       </isLogin.Provider>
+      <ToastContainer theme="dark" />
     </>
   );
 }

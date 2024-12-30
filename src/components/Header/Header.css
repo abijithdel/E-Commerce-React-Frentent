@@ -23,3 +23,10 @@
     font-size: 25px;
     font-weight: 500;
 }
+
+.header .cart-number{
+    background-color: white;
+    color: black;
+    border-radius: 30px;
+    padding: 1px;
+}

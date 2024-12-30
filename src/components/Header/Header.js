@@ -8,15 +8,15 @@ import { isLogin } from "../../AppContext";
 import "./Header.css";
 
 function Header() {
-    const [admin,setAdmin] = useState(false)
+    const [admin, setAdmin] = useState(false);
     const navigate = useNavigate();
 
     const authStatus = useContext(isLogin);
     useEffect(() => {
         if (localStorage.getItem("user")) {
-            const userSri = localStorage.getItem("user")
-            const User = JSON.parse(userSri)
-            setAdmin(User.admin)
+            const userSri = localStorage.getItem("user");
+            const User = JSON.parse(userSri);
+            setAdmin(User.admin);
             authStatus.setLogin(true);
         }
     }, [authStatus]);
@@ -40,29 +40,28 @@ function Header() {
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="ms-auto">
                             <Nav.Link className="text-white icons">
-                                <Link to="/">
-                                    Home
-                                </Link>
+                                <Link to="/">Home</Link>
                             </Nav.Link>
                             {authStatus.islogin ? (
-                                (
-                                    <>
-                                        {admin ?
+                                <>
+                                    {admin ? (
                                         <Nav.Link className="text-white icons">
-                                            <Link to='/admin'>
-                                                Admin Panel
-                                            </Link>
+                                            <Link to="/admin">Admin Panel</Link>
                                         </Nav.Link>
-                                        : '' 
-                                        }
-                                        <Nav.Link className="text-white icons">
-                                            <Link onClick={logout} className="text-danger">
-                                                Logout
-                                            </Link>
-                                        </Nav.Link>
-                                          
-                                    </>
-                                )
+                                    ) : (
+                                        ""
+                                    )}
+                                    <Nav.Link className="text-white icons">
+                                        <Link>
+                                            Cart <span className="cart-number">0</span>
+                                        </Link>
+                                    </Nav.Link>
+                                    <Nav.Link className="text-white icons">
+                                        <Link onClick={logout} className="text-danger">
+                                            Logout
+                                        </Link>
+                                    </Nav.Link>
+                                </>
                             ) : (
                                 <>
                                     <Nav.Link className="text-white icons">
