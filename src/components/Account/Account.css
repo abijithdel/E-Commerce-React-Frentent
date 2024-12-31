@@ -1,0 +1,76 @@
+.account{
+    height: 90vh;
+    width: 98vw;
+}
+
+.account .container{
+    height: 100%;
+    width: 100%;
+}
+
+.account .main{
+    height: 100%;
+    width: 100%;
+    display: flex;
+}
+
+
+.account .main .menu{
+    height: 70%;
+    width: 30%;
+    background-color: rgb(22, 21, 20);
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.account .main .menu a{
+    text-decoration: none;
+    color: white;
+    font-size: 25px;
+    text-align: center;
+    border-bottom: 1px solid white;
+    margin-top: 10px;
+}
+
+.account .main .menu a:hover{
+    color: rgb(93, 93, 104);
+    border-bottom: 1px solid rgb(93, 93, 104);
+}
+
+.account .main .cart-items{
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.account .main .cart-items .Product{
+    background-color: rgb(37, 37, 37);
+    width: 204px;
+    max-height: 410px;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    margin-right: 10px;
+    margin-top: 20px;
+}
+
+.account .main .cart-items .Product a{
+    color: white;
+    text-decoration: none;
+}
+
+.account .main .cart-items .Product img{
+    border-radius: 10px;
+    height: 177px;
+    width: 100%;
+
+}
+
+@media only screen and (max-width: 887px) {
+    .account .main .cart-items{display: none;}
+    .account .main .menu{
+        width: 100%;
+    }
+}

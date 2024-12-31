@@ -37,7 +37,7 @@ function Cart() {
           {items.map((item, key) => (
 
             <div className="Product">
-              <Link>
+              <Link to={`/product/${item._id}`}>
                 <img src={`http://${DOMAIN}/pro-imgs/${item.filename}`} alt='{item.name} ' />
                 <h3 >{item.name}</h3>
                 <p>{item.description}</p>

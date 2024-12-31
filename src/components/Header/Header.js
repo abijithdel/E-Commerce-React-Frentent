@@ -70,6 +70,13 @@ function Header() {
                                             Cart <span className="cart-number">{Count.Count}</span>
                                         </Link>
                                     </Nav.Link>
+
+                                    <Nav.Link className="text-white icons">
+                                        <Link to='/account'>
+                                           Account 
+                                        </Link>
+                                    </Nav.Link>
+
                                     <Nav.Link className="text-white icons">
                                         <Link onClick={logout} className="text-danger">
                                             Logout
