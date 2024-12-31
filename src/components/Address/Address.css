@@ -1,0 +1,45 @@
+.address{
+    height: 90vh;
+    width: 98vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.address form{
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(37, 37, 37);
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.address form input{
+    width: 250px;
+    height: 38px;
+    outline: none;
+    margin-top: 10px;
+    border: none;
+    border-radius: 8px;
+    padding-left: 10px;
+}
+
+.address form select{
+    height: 38px;
+    width: 250px;
+    outline: none;
+    margin-top: 10px;
+    border: none;
+    border-radius: 8px;
+    padding-left: 10px;
+}
+
+.address form textarea{
+    width: 250px;
+    outline: none;
+    margin-top: 10px;
+    border: none;
+    border-radius: 8px;
+    padding-left: 10px;
+}

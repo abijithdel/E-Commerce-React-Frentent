@@ -11,6 +11,7 @@ import CreatePoster from "./components/Admin/CreatePoster/CreatePoster";
 import OneProduct from "./components/OneProduct/OneProduct";
 import Cart from "./components/Cart/Cart";
 import Account from "./components/Account/Account";
+import Address from "./components/Address/Address";
 import { isLogin, cartCount } from "./AppContext";
 import { ToastContainer } from "react-toastify";
 import "./App.css";
@@ -34,6 +35,7 @@ function App() {
             <Route path="/product/:id" element={<OneProduct />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/account" element={<Account />} />
+            <Route path="/address" element={<Address />} />
             <Route
               path="*"
               element={
