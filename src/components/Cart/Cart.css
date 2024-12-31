@@ -1,0 +1,33 @@
+.cart {
+    height: 90vh;
+    width: 98vw;
+}
+
+.cart .main{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+} 
+
+.cart .main .Product img{
+    width: 100%;
+    max-width: 230px;
+    border-radius: 10px;
+}
+
+.cart .main .Product a{
+    text-decoration: none;
+    color: white;
+}
+
+.cart .main .Product{
+    width: 230px;
+    background-color: rgb(37, 37, 37);
+    border-radius: 10px;
+    padding: 5px;
+    text-align: center;
+    margin-right: 20px;
+    margin-top: 10px;
+}

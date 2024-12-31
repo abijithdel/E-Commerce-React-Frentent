@@ -4,7 +4,8 @@ import Navbar from "react-bootstrap/Navbar";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Outlet, Link, useNavigate } from "react-router-dom";
 import { useEffect, useContext, useState } from "react";
-import { isLogin } from "../../AppContext";
+import { isLogin, cartCount } from "../../AppContext";
+import Axios from '../../config/axios'
 import "./Header.css";
 
 function Header() {
@@ -12,14 +13,27 @@ function Header() {
     const navigate = useNavigate();
 
     const authStatus = useContext(isLogin);
+    const Count = useContext(cartCount)
     useEffect(() => {
         if (localStorage.getItem("user")) {
             const userSri = localStorage.getItem("user");
             const User = JSON.parse(userSri);
             setAdmin(User.admin);
             authStatus.setLogin(true);
+
+            const user = localStorage.getItem('user')
+            const obj = JSON.parse(user)
+            Axios({
+              url:`cart-item-count/${obj._id}`,
+              method:'GET'
+            })
+            .then(response => {
+                Count.setCount(response.data.count)
+            })
+            .catch(err => console.log(err))
         }
-    }, [authStatus]);
+
+    }, [authStatus,Count]);
 
     function logout() {
         localStorage.removeItem("user");
@@ -52,8 +66,8 @@ function Header() {
                                         ""
                                     )}
                                     <Nav.Link className="text-white icons">
-                                        <Link>
-                                            Cart <span className="cart-number">0</span>
+                                        <Link to='/cart'>
+                                            Cart <span className="cart-number">{Count.Count}</span>
                                         </Link>
                                     </Nav.Link>
                                     <Nav.Link className="text-white icons">

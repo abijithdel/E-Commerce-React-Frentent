@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Button, Container } from "react-bootstrap";
 import Poster from '../../Utilities/Poster/Poster'
 import Axios from '../../config/axios'
 import { Link } from "react-router-dom";
 import { DOMAIN } from '../../config/domain'
 import {  toast } from 'react-toastify';
+import { cartCount } from '../../AppContext'
 import "./Home.css";
 
 function Home() {
@@ -13,6 +14,8 @@ function Home() {
   const [sliderTrue, setSliderTrue] = useState()
   const [special, setSpecial] = useState([])
   const [products, setProducts] = useState([])
+
+  const CartCout = useContext(cartCount)
 
   useEffect(() => {
     // POSTER API
@@ -31,6 +34,7 @@ function Home() {
         }
       })
       .catch(err => console.log(err));
+
     // ProDuct API
     Axios({
       url: 'admin/get-all-products',
@@ -42,6 +46,7 @@ function Home() {
         }
       })
       .catch(err => console.log(err));
+
     // Special API
     Axios({
       url: 'admin/special',
@@ -53,6 +58,9 @@ function Home() {
         }
       })
       .catch(err => console.log(err))
+
+    // Cart Item Count
+    
   }, [])
 
   function AddtoCart(id){
@@ -67,6 +75,9 @@ function Home() {
       .then((response => {
         if(response.data.status){
           toast.success(response.data.message)
+          const newCout = CartCout.Count + 1
+          CartCout.setCount(newCout)
+
         }else{
           toast.error(response.data.message)
         }
@@ -112,8 +123,8 @@ function Home() {
         <div className="products mt-5">
           {products.map((item, key) => (
             
-              <div className="Product">
-                <Link key={key} to={`/product/${item._id}`}>
+              <div className="Product" key={key}>
+                <Link to={`/product/${item._id}`}>
                 <img src={`http://${DOMAIN}/pro-imgs/${item.filename}`} alt={item.name} />
                 <h3 className="text-center">{item.name}.</h3>
                 <p>{item.description}..</p>
