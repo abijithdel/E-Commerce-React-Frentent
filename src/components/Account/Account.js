@@ -37,13 +37,13 @@ function Account() {
         <div className='account'>
             <title>{user?.email}</title>
             <Container>
-                <h2 className='text-center mt-2'>{user?.email}</h2>
+                <h2 className='text-center mt-2 title-font'>{user?.email}</h2>
                 <div className='main'>
                     <div className="menu">
                         <Link to='/cart'>Cart</Link>
                         <Link>Edit User</Link>
                         <Link to='/address'>Address</Link>
-                        <Link>Orders</Link>
+                        <Link to='/your-orders'>Orders</Link>
                     </div>
                     <div className="cart-items">
                         {message ? <p className='text-center'>{message}</p> : ''}

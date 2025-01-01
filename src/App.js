@@ -12,6 +12,9 @@ import OneProduct from "./components/OneProduct/OneProduct";
 import Cart from "./components/Cart/Cart";
 import Account from "./components/Account/Account";
 import Address from "./components/Address/Address";
+import AllUsers from "./components/Admin/AllUsers/AllUsers";
+import AllOrders from "./components/AllOrders/AllOrders";
+import Orders from "./components/Orders/Orders";
 import { isLogin, cartCount } from "./AppContext";
 import { ToastContainer } from "react-toastify";
 import "./App.css";
@@ -36,6 +39,9 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/account" element={<Account />} />
             <Route path="/address" element={<Address />} />
+            <Route path="/allusers" element={<AllUsers />} />
+            <Route path="/order/:user_id/:product_id" element={<Orders />} />
+            <Route path="/your-orders" element={<AllOrders />} />
             <Route
               path="*"
               element={

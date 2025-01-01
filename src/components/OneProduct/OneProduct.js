@@ -40,7 +40,7 @@ function OneProduct() {
             <div className="main">
               <h1>{Product?.name}</h1>
               <span className="text-secondary">{Product?.category}</span>
-              <p className="text-success">IN STOCK</p>
+              {Product?.stock ? <p className="text-success">In Stock</p>: <p className="text-danger">Out of The Stock</p>}
               <h3>${Product?.price}</h3>
               <div>
                 <Button>

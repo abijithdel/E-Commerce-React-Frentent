@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Button, Container } from "react-bootstrap";
 import Poster from '../../Utilities/Poster/Poster'
+import { useNavigate } from 'react-router-dom'
 import Axios from '../../config/axios'
 import { Link } from "react-router-dom";
 import { DOMAIN } from '../../config/domain'
@@ -9,7 +10,7 @@ import { cartCount } from '../../AppContext'
 import "./Home.css";
 
 function Home() {
-
+  const navigate =useNavigate()
   const [slides, setSlider] = useState()
   const [sliderTrue, setSliderTrue] = useState()
   const [special, setSpecial] = useState([])
@@ -88,7 +89,16 @@ function Home() {
     }
   }
 
-
+  function buyProduct(product_id){
+    const strUser = localStorage.getItem('user')
+    if(strUser){
+      const objUser = JSON.parse(strUser)
+      navigate(`/order/${objUser._id}/${product_id}`)
+    }else{
+      toast.warn('Create a Account')
+      navigate('/signup')
+    }
+  }
 
   return (
 
@@ -132,7 +142,7 @@ function Home() {
                 </Link>
                 <div>
                   <Button onClick={() => AddtoCart(item._id)}>Add To Cart</Button>
-                  <Button variant="success" className="m-2">Buy Now</Button>
+                  <Button onClick={() => buyProduct(item._id)} variant="success" className="m-2">Buy Now</Button>
                 </div>
               </div>
             

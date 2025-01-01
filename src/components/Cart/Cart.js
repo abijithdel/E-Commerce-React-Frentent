@@ -3,16 +3,20 @@ import { Button, Container } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { DOMAIN } from '../../config/domain'
 import Axios from '../../config/axios'
+import { useNavigate } from 'react-router-dom'
 import './Cart.css'
 
 function Cart() {
+  const navigate = useNavigate()
   const [items, setItems] = useState([])
   const [message, setMessage] = useState(null)
+  const [user,setUser] = useState()
 
   useEffect(() => {
     if (localStorage.getItem('user')) {
       const StrUser = localStorage.getItem('user')
       const ObjUser = JSON.parse(StrUser)
+      setUser(ObjUser)
 
       Axios({
         url: `cart-items/${ObjUser._id}`,
@@ -28,6 +32,10 @@ function Cart() {
         .catch(err => setMessage('Oops Server Error!'));
     }
   }, [])
+
+  function buy(product_id){
+    navigate(`/order/${user._id}/${product_id}`)
+  }
   return (
     <div className='cart'>
       <title>Cart</title>
@@ -44,7 +52,7 @@ function Cart() {
                 <h4>₹{item.price}</h4>
               </Link>
               <div>
-                <Button variant="success" className="m-2">Buy Now</Button>
+                <Button onClick={() => buy(item._id)} variant="success" className="m-2">Buy Now</Button>
               </div>
             </div>
 

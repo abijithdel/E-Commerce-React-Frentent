@@ -51,7 +51,7 @@ function Dashboard() {
             <h4>All User's</h4>
             <span>20</span>
             <div>
-              <Link>View</Link>
+              <Link to='/allusers'>View</Link>
             </div>
           </div>
 
