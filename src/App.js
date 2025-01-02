@@ -15,6 +15,7 @@ import Address from "./components/Address/Address";
 import AllUsers from "./components/Admin/AllUsers/AllUsers";
 import AllOrders from "./components/AllOrders/AllOrders";
 import Orders from "./components/Orders/Orders";
+import AdminOrders from "./components/Admin/Orders/Orders";
 import { isLogin, cartCount } from "./AppContext";
 import { ToastContainer } from "react-toastify";
 import "./App.css";
@@ -42,6 +43,7 @@ function App() {
             <Route path="/allusers" element={<AllUsers />} />
             <Route path="/order/:user_id/:product_id" element={<Orders />} />
             <Route path="/your-orders" element={<AllOrders />} />
+            <Route path="/admin-orders" element={<AdminOrders />} />
             <Route
               path="*"
               element={

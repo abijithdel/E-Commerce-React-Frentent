@@ -60,7 +60,7 @@ function Dashboard() {
             <span>20</span>
             <div>
               <Link style={margin}>Ship</Link>
-              <Link>View</Link>
+              <Link to='/admin-orders'>View</Link>
             </div>
           </div>
 
