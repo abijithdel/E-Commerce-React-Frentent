@@ -11,7 +11,6 @@ function Dashboard() {
     if (localStorage.getItem("user")) {
       const UserString = localStorage.getItem("user");
       const User = JSON.parse(UserString);
-      console.log(User._id);
 
       Axios({
         url: "admin/isadmin",
@@ -43,7 +42,7 @@ function Dashboard() {
             <span>20</span>
             <div>
               <Link style={margin} to="/addproduct">Add New</Link>
-              <Link>View</Link>
+              <Link to='/all-products'>View</Link>
             </div>
           </div>
 
@@ -59,7 +58,7 @@ function Dashboard() {
             <h4>All Order's</h4>
             <span>20</span>
             <div>
-              <Link style={margin}>Ship</Link>
+              {/* <Link style={margin}>Ship</Link> */}
               <Link to='/admin-orders'>View</Link>
             </div>
           </div>
@@ -69,7 +68,7 @@ function Dashboard() {
             <span>20</span>
             <div>
               <Link style={margin} to="/createposter">Create</Link>
-              <Link>View</Link>
+              <Link to='/all-posters'>View</Link>
             </div>
           </div>
 

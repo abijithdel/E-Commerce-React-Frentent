@@ -16,6 +16,9 @@ import AllUsers from "./components/Admin/AllUsers/AllUsers";
 import AllOrders from "./components/AllOrders/AllOrders";
 import Orders from "./components/Orders/Orders";
 import AdminOrders from "./components/Admin/Orders/Orders";
+import AllProducts from "./components/Admin/AllProducts/AllProducts";
+import AllPoster from "./components/Admin/AllPoster/AllPoster";
+import EditProduct from "./components/Admin/EditProduct/EditProduct";
 import { isLogin, cartCount } from "./AppContext";
 import { ToastContainer } from "react-toastify";
 import "./App.css";
@@ -44,6 +47,9 @@ function App() {
             <Route path="/order/:user_id/:product_id" element={<Orders />} />
             <Route path="/your-orders" element={<AllOrders />} />
             <Route path="/admin-orders" element={<AdminOrders />} />
+            <Route path="/all-products" element={<AllProducts />} />
+            <Route path="/all-posters" element={<AllPoster />} />
+            <Route path="/edit-product/:produc_id" element={<EditProduct />} />
             <Route
               path="*"
               element={

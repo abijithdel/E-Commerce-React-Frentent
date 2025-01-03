@@ -33,6 +33,11 @@ function Account() {
             navigate('/')
         }
     }, [navigate])
+
+    function buy(produc_id){
+        navigate(`/order/${user._id}/${produc_id}`)
+    }
+
     return (
         <div className='account'>
             <title>{user?.email}</title>
@@ -56,7 +61,7 @@ function Account() {
                                     <h4>₹{item.price}</h4>
                                 </Link>
                                 <div>
-                                    <Button variant="success" className="m-2">Buy Now</Button>
+                                    <Button variant="success" className="m-2" onClick={() => buy(item._id)}>Buy Now</Button>
                                 </div>
                             </div>
                         ))}

@@ -1,0 +1,20 @@
+.admin-posters{
+    height: 90vh;
+    width: 97vw;
+}
+
+.admin-posters th{
+    background-color: rgb(19, 18, 18);
+    color: white;
+}
+
+.admin-posters td{
+    background-color: rgb(19, 18, 18);
+    color: white;
+}
+
+.admin-posters td img{
+    height: 30px;
+    width: 60px;
+    border-radius: 8px;
+}

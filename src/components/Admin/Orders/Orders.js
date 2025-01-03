@@ -7,7 +7,7 @@ import { toast } from 'react-toastify'
 
 function Orders() {
     const [orders, setOrders] = useState([])
-    const [refresh,setRefresh] = useState()
+    const [refresh,setRefresh] = useState(0)
 
     useEffect(() => {
         Axios({
@@ -22,15 +22,19 @@ function Orders() {
         .catch(err => console.log(err))
     }, [refresh])
 
-    function CancelOrder(product_id){
+    function ChangeStatus(order_id,status){
         Axios({
-            url:`admin/cancel-order/${product_id}`,
-            method:'GET'
+            url:`admin/change-order-status`,
+            method:'POST',
+            data: {order_id,status}
         })
         .then(response => {
             if(response.data.status){
                 toast.success(response.data.message)
-                setRefresh(true)
+                setRefresh(refresh + 1)
+            }else{
+                setRefresh(refresh + 1)
+                toast.success(response.data.message)
             }
         })
         .catch(err => console.log(err))
@@ -60,9 +64,9 @@ function Orders() {
                                 {item.delivery_date ? <span>Delivered Date: {item.delivery_date}</span> : ''}
                                 <h3>{item.status}</h3>
                                 <div>
-                                    <Button variant="danger" onClick={() => CancelOrder(item._id)}>Cancel</Button>
-                                    <Button variant="warning" className='m-2'>Ship</Button>
-                                    <Button variant="success" className='m-2'>Delivered </Button>
+                                    <Button variant="danger" onClick={() => ChangeStatus(item._id,'Cancel')}>Cancel</Button>
+                                    <Button variant="warning" onClick={() => ChangeStatus(item._id,'Ship')} className='m-2'>Ship</Button>
+                                    <Button variant="success" onClick={() => ChangeStatus(item._id,'Delivered')} className='m-2'>Delivered </Button>
                                 </div>
                             </div>
                         </div>

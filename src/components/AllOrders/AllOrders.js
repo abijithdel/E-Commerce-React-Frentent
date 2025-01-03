@@ -25,6 +25,13 @@ function AllOrders() {
     }
 
   }, [])
+
+  const statusStyles = {
+    'Order Delivered': 'text-success',
+    'Order Cancelled': 'text-danger',
+    'Order Shipped': 'text-warning',
+    'Preparing for Shipment': '',
+  };
  
   return (
     <div className='all-orders'>
@@ -49,9 +56,9 @@ function AllOrders() {
                 <h6>{item.address[0].countri},{item.address[0].state},{item.address[0].address},Pin:{item.address[0].pincode},(PH){item.address[0].phone}</h6>
                 <span>Date: {item.order_date}</span>
                 {item.delivery_date ? <span>Delivered Date: {item.delivery_date}</span>:''}
-                <h3>{item.status}</h3>
+                <h3 className={statusStyles[item.status]}>{item.status}</h3>
                 <div>
-                  <Button variant="warning">Cancel</Button>
+                  {item.status === 'Preparing for Shipment'? <Button variant="warning">Cancel</Button>: ''}
                   <Button variant="success" className='m-2'>Contact</Button>
                 </div>
               </div>
