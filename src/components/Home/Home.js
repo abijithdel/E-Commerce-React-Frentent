@@ -15,6 +15,7 @@ function Home() {
   const [sliderTrue, setSliderTrue] = useState()
   const [special, setSpecial] = useState([])
   const [products, setProducts] = useState([])
+  const [searchVal,setSearchVal] = useState(null)
 
   const CartCout = useContext(cartCount)
 
@@ -100,13 +101,22 @@ function Home() {
     }
   }
 
+  function Search(){
+    if(!searchVal){
+      toast.warn('Enter Search! Value')
+      return;
+    }
+    const quarry = searchVal.replace(/\s+/g, "-");
+    navigate(`/search/${quarry}`)
+  }
+
   return (
 
     <div className="home-page">
       <title>Home</title>
       <div className="search-container">
-        <input type="search" placeholder="Search..!" />
-        <Button className="btn" variant="outline-light">Search</Button>
+        <input type="search" placeholder="Search..!" value={searchVal} onChange={(e) => setSearchVal(e.target.value)} />
+        <Button className="btn" variant="outline-light" onClick={Search}>Search</Button>
       </div>
       <Container className="home mt-2">
         {sliderTrue ?
