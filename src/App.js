@@ -20,6 +20,7 @@ import AllProducts from "./components/Admin/AllProducts/AllProducts";
 import AllPoster from "./components/Admin/AllPoster/AllPoster";
 import EditProduct from "./components/Admin/EditProduct/EditProduct";
 import Search from "./components/Search/Search";
+import EditUser from "./components/EditUser/EditUser";
 import { isLogin, cartCount } from "./AppContext";
 import { ToastContainer } from "react-toastify";
 import "./App.css";
@@ -52,6 +53,7 @@ function App() {
             <Route path="/all-posters" element={<AllPoster />} />
             <Route path="/edit-product/:produc_id" element={<EditProduct />} />
             <Route path="/search/:quarry" element={<Search />} />
+            <Route path="/edit-user" element={<EditUser />} />
             <Route
               path="*"
               element={

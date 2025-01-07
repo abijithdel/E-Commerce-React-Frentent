@@ -1,0 +1,17 @@
+.edit-user{
+    height: 70vh;
+    width: 97vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.edit-user form input{
+    height: 38px;
+    width: 250px;
+    border: none;
+    border-radius: 8px;
+    padding-left: 10px;
+    outline: none;
+}
