@@ -21,6 +21,8 @@ import AllPoster from "./components/Admin/AllPoster/AllPoster";
 import EditProduct from "./components/Admin/EditProduct/EditProduct";
 import Search from "./components/Search/Search";
 import EditUser from "./components/EditUser/EditUser";
+import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
+import ResetPass from "./components/ResetPass/ResetPass";
 import { isLogin, cartCount } from "./AppContext";
 import { ToastContainer } from "react-toastify";
 import "./App.css";
@@ -54,6 +56,8 @@ function App() {
             <Route path="/edit-product/:produc_id" element={<EditProduct />} />
             <Route path="/search/:quarry" element={<Search />} />
             <Route path="/edit-user" element={<EditUser />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/reset-password/:token" element={<ResetPass />} />
             <Route
               path="*"
               element={

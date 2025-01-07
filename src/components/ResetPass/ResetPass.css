@@ -1,28 +1,23 @@
-.signin{
+.reset-pass{
     height: 90vh;
     width: 97vw;
-}
-
-.signin .rap{
-    height: 100%;
-    width: 100%;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
 }
 
-.signin .rap form{
+.reset-pass .form{
     display: flex;
     flex-direction: column;
 }
 
-.signin .rap form input{
-    height: 40px;
+.reset-pass .form input{
+    height: 38px;
     width: 250px;
     outline: none;
     border: none;
-    border-radius: 8px;
     padding-left: 10px;
+    border-radius: 8px;
     margin-bottom: 10px;
 }

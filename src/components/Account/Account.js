@@ -46,7 +46,7 @@ function Account() {
                 <div className='main'>
                     <div className="menu">
                         <Link to='/cart'>Cart</Link>
-                        <Link>Edit User</Link>
+                        <Link to='/edit-user'>Edit User</Link>
                         <Link to='/address'>Address</Link>
                         <Link to='/your-orders'>Orders</Link>
                     </div>

@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 import { Alert, Button } from 'react-bootstrap'
 import Axios from '../../config/axios'
 import { isLogin } from '../../AppContext'
@@ -59,6 +59,9 @@ function Signin() {
                     <input type="email" placeholder='Email' value={email} onChange={onEmail}/>
                     <input type="password" placeholder='Password' value={password} onChange={onPassword}/>
                     <div>
+                        <Link to='/forgot-password'>forgotpassword</Link>
+                    </div>
+                    <div className='mt-1'>
                         <Button onClick={SigninAPI}>Sign in</Button>
                     </div>
                 </form>

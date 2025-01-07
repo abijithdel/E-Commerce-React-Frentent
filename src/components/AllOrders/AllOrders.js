@@ -3,9 +3,11 @@ import Axios from '../../config/axios'
 import { Button, Container } from 'react-bootstrap'
 import { DOMAIN } from '../../config/domain'
 import './AllOrders.css'
+import { toast } from 'react-toastify'
 
 function AllOrders() {
   const [orders, setOrders] = useState([])
+  const [refresh,setRefresh] = useState(0)
 
   useEffect(() => {
     const strUser = localStorage.getItem('user')
@@ -24,7 +26,7 @@ function AllOrders() {
         .catch(err => console.log(err))
     }
 
-  }, [])
+  }, [refresh])
 
   const statusStyles = {
     'Order Delivered': 'text-success',
@@ -32,6 +34,24 @@ function AllOrders() {
     'Order Shipped': 'text-warning',
     'Preparing for Shipment': '',
   };
+
+  function cancelOrder(order_id){
+    const status = 'Cancel'
+    Axios({
+      url:'admin/change-order-status',
+      method:'POST',
+      data: { order_id, status }
+    })
+    .then(response => {
+      if(response.data.status){
+        setRefresh(refresh + 1)
+        toast.success(response.data.message)
+      }else{
+        toast.warn(response.data.message)
+      }
+    })
+    .catch(err => toast.error('Server Error'))
+  }
  
   return (
     <div className='all-orders'>
@@ -58,7 +78,7 @@ function AllOrders() {
                 {item.delivery_date ? <span>Delivered Date: {item.delivery_date}</span>:''}
                 <h3 className={statusStyles[item.status]}>{item.status}</h3>
                 <div>
-                  {item.status === 'Preparing for Shipment'? <Button variant="warning">Cancel</Button>: ''}
+                  {item.status === 'Preparing for Shipment'? <Button variant="warning" onClick={() => cancelOrder(item._id)}>Cancel</Button>: ''}
                   <Button variant="success" className='m-2'>Contact</Button>
                 </div>
               </div>
