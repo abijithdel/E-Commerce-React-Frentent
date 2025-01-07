@@ -3,7 +3,10 @@ import { useNavigate,Link } from "react-router-dom";
 import { Alert, Button } from 'react-bootstrap'
 import Axios from '../../config/axios'
 import { isLogin } from '../../AppContext'
+import ReCAPTCHA from 'react-google-recaptcha'
+import { SITE_KEY_GOOGLE } from '../../config/settings'
 import './Signin.css'
+import { toast } from 'react-toastify';
 
 function Signin() {
     const navigate = useNavigate()
@@ -11,6 +14,7 @@ function Signin() {
     const [password,setPassword] = useState()
     const [errormsg,setErrormsg] = useState(null)
     const [successmsg,setSuccessmsg] = useState(null)
+    const [cap,setCap] = useState(null)
 
     const authStatus = useContext(isLogin)
 
@@ -23,6 +27,10 @@ function Signin() {
     }
 
     function SigninAPI(){
+        if(!cap){
+            toast.warn('Check Captcha')
+            return;
+        }
         if(email && password){
             Axios({
                 url: "auth/signin",
@@ -60,6 +68,9 @@ function Signin() {
                     <input type="password" placeholder='Password' value={password} onChange={onPassword}/>
                     <div>
                         <Link to='/forgot-password'>forgotpassword</Link>
+                    </div>
+                    <div>
+                        <ReCAPTCHA sitekey={SITE_KEY_GOOGLE} onChange={(e) => setCap(e)}/>
                     </div>
                     <div className='mt-1'>
                         <Button onClick={SigninAPI}>Sign in</Button>

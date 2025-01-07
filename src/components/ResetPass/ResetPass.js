@@ -4,6 +4,8 @@ import Axios from '../../config/axios'
 import { useNavigate, useParams } from 'react-router-dom'
 import './ResetPass.css'
 import { toast } from 'react-toastify'
+import ReCAPTCHA from 'react-google-recaptcha'
+import { SITE_KEY_GOOGLE } from '../../config/settings'
 
 
 function ResetPass() {
@@ -11,8 +13,19 @@ function ResetPass() {
     const { token } = useParams()
     const [password, setPassword] = useState()
     const [cpassword, setCpassword] = useState()
+    const [cap,setCap] = useState(null)
 
     function ResetAPI() {
+        if(!cap){
+            toast.warn('Check Captcha')
+            return;
+        }
+        if(!cpassword){
+            return
+        }
+        if(!password){
+            return
+        }
         if (password !== cpassword) {
             toast.warn("Check Confirm Password")
             return;
@@ -40,6 +53,9 @@ function ResetPass() {
             <div className='form'>
                 <input type="password" placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} />
                 <input type="password" placeholder='Confirm Password' value={cpassword} onChange={(e) => setCpassword(e.target.value)} />
+                <div>
+                    <ReCAPTCHA  sitekey={SITE_KEY_GOOGLE}  onChange={(e) => setCap(e)}/>
+                </div>
                 <div>
                     <Button onClick={ResetAPI}>Save</Button>
                 </div>

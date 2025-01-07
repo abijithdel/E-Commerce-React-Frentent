@@ -3,7 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
 import Axios from "../../config/axios";
 import { isLogin } from '../../AppContext'
+import ReCAPTCHA from 'react-google-recaptcha'
+import { SITE_KEY_GOOGLE } from '../../config/settings'
 import "./Sign-up.css";
+import { toast } from "react-toastify";
+
 function Signup() {
     const navigate = useNavigate()
     const [email, setEmail] = useState();
@@ -12,6 +16,7 @@ function Signup() {
     const [errormsg,setErrormsg] = useState(null)
     const [successmsg,setSuccessmsg] = useState(null)
     const authStatus = useContext(isLogin)
+    const [cap,setCap] = useState(null)
 
     function onEmail(e) {
         setEmail(e.target.value);
@@ -26,6 +31,10 @@ function Signup() {
     }
 
     async function signupAPI() {
+        if(!cap){
+            toast.warn('Check Captcha')
+            return;
+        }
         if (email && password && cpassword) {
             Axios({
                 url: "auth/signup",
@@ -81,6 +90,9 @@ function Signup() {
                         value={cpassword}
                         onChange={onCPassword}
                     />
+                    <div>
+                        <ReCAPTCHA  sitekey={SITE_KEY_GOOGLE} onChange={(e) => setCap(e)} />
+                    </div>
                     <div>
                         <Button onClick={signupAPI}>Sign in</Button>
                     </div>
