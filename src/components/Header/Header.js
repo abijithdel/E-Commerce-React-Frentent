@@ -36,9 +36,9 @@ function Header() {
     }, [authStatus,Count]);
 
     function logout() {
+        navigate("/");
         localStorage.removeItem("user");
         authStatus.setLogin(false);
-        navigate("/");
     }
     return (
         <div className="header">

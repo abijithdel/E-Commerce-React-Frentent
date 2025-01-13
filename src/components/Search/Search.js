@@ -32,7 +32,7 @@ function Search() {
             <Container>
                 {products.map((item, key) => (
                     <div className="items" key={key}>
-                        <Link to="#">
+                        <Link to={`/product/${item._id}`}>
                             <img
                             src={`http://${DOMAIN}/pro-imgs/${item.filename}`}
                                 alt="Product"
