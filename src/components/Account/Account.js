@@ -3,6 +3,9 @@ import { Container, Button } from 'react-bootstrap'
 import { useNavigate, Link } from 'react-router-dom'
 import Axios from '../../config/axios'
 import { DOMAIN } from '../../config/domain'
+import { VscAccount } from "react-icons/vsc";
+import { FaUserSecret, FaBoxOpen } from "react-icons/fa";
+import { FaRegAddressCard } from "react-icons/fa6";
 import './Account.css'
 
 function Account() {
@@ -45,10 +48,10 @@ function Account() {
                 <h2 className='text-center mt-2 title-font'>{user?.email}</h2>
                 <div className='main'>
                     <div className="menu">
-                        <Link to='/cart'>Cart</Link>
-                        <Link to='/edit-user'>Edit User</Link>
-                        <Link to='/address'>Address</Link>
-                        <Link to='/your-orders'>Orders</Link>
+                        <Link to='/cart'> <VscAccount /> Cart</Link>
+                        <Link to='/edit-user'> <FaUserSecret /> Edit User</Link>
+                        <Link to='/address'> <FaRegAddressCard /> Address</Link>
+                        <Link to='/your-orders'> <FaBoxOpen /> Orders</Link>
                     </div>
                     <div className="cart-items">
                         {message ? <p className='text-center'>{message}</p> : ''}

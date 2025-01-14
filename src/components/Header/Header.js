@@ -6,6 +6,10 @@ import { Outlet, Link, useNavigate } from "react-router-dom";
 import { useEffect, useContext, useState } from "react";
 import { isLogin, cartCount } from "../../AppContext";
 import Axios from '../../config/axios'
+import { IoHomeOutline } from "react-icons/io5";
+import { FaTachometerAlt } from "react-icons/fa";
+import { TiShoppingCart } from "react-icons/ti";
+import { VscAccount } from "react-icons/vsc";
 import "./Header.css";
 
 function Header() {
@@ -54,26 +58,26 @@ function Header() {
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="ms-auto">
                             <Nav.Link className="text-white icons">
-                                <Link to="/">Home</Link>
+                                <IoHomeOutline className="m-1" /> <Link to="/">Home</Link>
                             </Nav.Link>
                             {authStatus.islogin ? (
                                 <>
                                     {admin ? (
                                         <Nav.Link className="text-white icons">
-                                            <Link to="/admin">Admin Panel</Link>
+                                            <FaTachometerAlt className="m-1" /> <Link to="/admin">Admin Panel</Link>
                                         </Nav.Link>
                                     ) : (
                                         ""
                                     )}
                                     <Nav.Link className="text-white icons">
                                         <Link to='/cart'>
-                                            Cart <span className="cart-number">{Count.Count}</span>
+                                            <TiShoppingCart className="m-1"/> Cart <span className="cart-number">{Count.Count}</span>
                                         </Link>
                                     </Nav.Link>
 
                                     <Nav.Link className="text-white icons">
                                         <Link to='/account'>
-                                           Account 
+                                           <VscAccount className="m-1" /> Account 
                                         </Link>
                                     </Nav.Link>
 
