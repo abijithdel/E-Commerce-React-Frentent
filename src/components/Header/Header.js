@@ -40,9 +40,11 @@ function Header() {
     }, [authStatus,Count]);
 
     function logout() {
-        navigate("/");
         localStorage.removeItem("user");
         authStatus.setLogin(false);
+        setTimeout(() => {
+            navigate("/");
+        }, 0);
     }
     return (
         <div className="header">

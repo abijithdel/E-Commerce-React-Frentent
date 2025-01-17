@@ -23,6 +23,7 @@ import Search from "./components/Search/Search";
 import EditUser from "./components/EditUser/EditUser";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
 import ResetPass from "./components/ResetPass/ResetPass";
+import Footer from "./components/Footer/Footer";
 import { isLogin, cartCount } from "./AppContext";
 import { ToastContainer } from "react-toastify";
 import "./App.css";
@@ -65,6 +66,7 @@ function App() {
               }
             />
           </Routes>
+          <Footer />
         </cartCount.Provider>
       </isLogin.Provider>
       <ToastContainer theme="dark" />
