@@ -15,6 +15,9 @@
 .signin .rap form{
     display: flex;
     flex-direction: column;
+    background-color: rgb(43, 42, 42);
+    padding: 10px;
+    border-radius: 10px;
 }
 
 .signin .rap form input{
